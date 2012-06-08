@@ -1,0 +1,122 @@
+/* fix padding of active_admin.css */
+
+table tbody td label {
+	padding-top: 8px;
+}
+
+form fieldset ol li label {
+	padding-top: 8px;
+}
+
+/* my additional css */
+
+form select {
+	border: 1px solid #C9D0D6;
+	border-radius: 3px;
+	outline: none;
+	padding: 6px 5px;
+}
+form select:focus {
+	border: 1px solid #99a2aa;
+	box-shadow: 0 0 4px #99a2aa;
+	-moz-box-shadow: 0 0 4px #99a2aa;
+	-webkit-box-shadow: 0 0 4px #99a2aa;
+}
+form table tbody tr > td {
+	vertical-align: top;
+}
+form fieldset.small_inputs ol > li label {
+	width: 50%;
+}
+form fieldset.small_inputs ol > li input {
+	width: 30%;
+}
+
+.horz-inputs, .horz-inputs-wide, .horz-inputs-small {
+	padding: 5px;
+}
+.horz-inputs > label {
+	width: 35%;
+	float: left;
+	font-weight: bold;
+	color: #5E6469;
+	vertical-align: baseline;
+}
+.horz-inputs input[type=text] {
+	width: 25%;
+}
+
+.horz-inputs .datepicker {
+	background: white url("../img/active_admin/datepicker/datepicker-input-icon.png") no-repeat 100% 7px;
+	padding-right: 10px;
+	width: 71px;
+}
+
+.horz-inputs ul li label {
+	margin-top: 5px;
+	margin-right: 15px;
+	float: left;
+}
+.horz-inputs ul li input[type=radio] {
+	margin-top: 5px;
+	margin-right: 5px;
+	float: left;
+}
+
+.horz-inputs-wide > label {
+	width: 16.5%;
+	float: left;
+	font-weight: bold;
+	color: #5E6469;
+	vertical-align: baseline;
+	padding-top: 8px;
+}
+.horz-inputs-wide input[type=text] {
+	width: 25%;
+}
+.horz-inputs-wide ul li label {
+	margin-top: 5px;
+	margin-right: 15px;
+	float: left;
+}
+.horz-inputs-wide ul li input[type=radio] {
+	margin-top: 5px;
+	margin-right: 5px;
+	float: left;
+}
+
+.horz-inputs-small > label {
+	width: 55%;
+	float: left;
+	font-weight: bold;
+	color: #5E6469;
+	vertical-align: baseline;
+	padding-top: 8px;
+}
+.horz-inputs-small input[type=text] {
+	width: 35%;
+}
+.horz-inputs-small ul li label {
+	margin-top: 5px;
+	margin-right: 15px;
+	float: left;
+}
+.horz-inputs-small ul li input[type=radio] {
+	margin-top: 5px;
+	margin-right: 5px;
+	float: left;
+}
+/* error */
+.horz-inputs input.error, 
+.horz-inputs-wide input.error, 
+.horz-inputs-small input.error,
+.horz-inputs select.error,
+.horz-inputs-wide select.error,
+.horz-inputs-small select.error
+{
+	border: 1px solid red;
+}
+abbr {
+	border-bottom: 0px;
+}
+
