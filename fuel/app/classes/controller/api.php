@@ -1,6 +1,6 @@
 <?php
 
-class Controller_Api extends Petro\Controller_Common
+class Controller_Api extends Petro\Controller_App
 {
 	public function action_client_list()
 	{

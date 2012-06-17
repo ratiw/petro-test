@@ -1,5 +1,5 @@
 <?php
-class Controller_Clients extends Petro\Controller_Common 
+class Controller_Clients extends Petro\Controller_App
 {
 	// protected $model = 'Model_Client';
 	// protected $app_name = 'Customer';
@@ -31,12 +31,19 @@ class Controller_Clients extends Petro\Controller_Common
 		$this->template->set('content', $grid->render(), false);
 	}
 	
-	public function setup_index()
+	public function setup_index(&$grid)
 	{
-		
+		$this->sidebars->add('Filters', 
+			Petro::render_filters(array(
+				'code' => array('label' => 'Code', 'type' => 'string'),
+				'name' => array('type' => 'string'),
+				// 'status' => array('type' => 'select', 'collection' => Petro_Lookup::get('client.status'))
+				'status' => array('type' => 'checkbox', 'collection' => Petro_Lookup::get('client.status'))
+			))
+		); 
 	}
 	
-	public function a_action_view($id = null)
+	public function action_view($id = null)
 	{
 		$client = Model_Client::find($id);
 
@@ -45,9 +52,19 @@ class Controller_Clients extends Petro\Controller_Common
 			// Petro::render_attr_table($client, static::_columns('view'))
 			// Petro::render_attr_table($client)
 			Petro::render_attr_table(
-				$client, 
+				$client,
 				array('code', 'name', 'name_en', 'status')
 			)
+			// Petro::render_attr_table(
+				// $client, 
+				// array(
+					// 'code', 
+					// 'full_name' => function($data) {
+						// return $data->name.' - '.$data->name_en;
+					// }, 
+					// 'status'
+				// )
+			// )
 			// Petro::render_attr_table(
 				// $client, 
 				// array('code', 'name', 'name_en', 'status' => function($data) {
@@ -57,7 +74,6 @@ class Controller_Clients extends Petro\Controller_Common
 			// )
 		);
 		
-		// $data['comments'] = Petro::render_comments(static::$ref_type, $id);
 		$data['comments'] = Petro_Comment::render($this->ref_type, $id);
 
 		$this->sidebars->add(
@@ -82,14 +98,14 @@ class Controller_Clients extends Petro\Controller_Common
 		$this->template->set('content', $data['client'].$data['comments'], false);
 	}
 	
-	protected function setup_view($id)
+	protected function setup_view(&$data)
 	{
 		$this->sidebars->add(
 			'Render from another View!', 
 			View::forge('sidebar_link', array('url' => 'going/anywhere'))
 		);
 		
-		return Petro_Comment::render($this->ref_type, $id);
+		return Petro_Comment::render($this->ref_type, $data->id);
 	}
 	
 	protected function setup_form()

@@ -1,6 +1,7 @@
 <?php
 
-class Model_Client extends Orm\Model {
+class Model_Client extends Orm\Model 
+{
 
 	public static function _init()
 	{
@@ -32,7 +33,7 @@ class Model_Client extends Orm\Model {
 				'type' => 'select',
 				'lookup' => 'client.status',
 			),
-			'grid' => array('format' => '<span class="label">{text}</span>'),
+			'grid' => array('format' => '<span class="label">{value}</span>'),
 		),
 		'created_at' => array(
 			'form' => array('type' => false),

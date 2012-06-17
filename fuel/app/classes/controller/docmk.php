@@ -11,7 +11,8 @@
  * @stencil   activeapp
  */
 
-class Controller_DocMK extends Controller_Common {
+class Controller_DocMK extends Controller_App
+{
 
 	/**
 	 * Define columns

@@ -11,7 +11,7 @@
  * @stencil   activeapp
  */
 
-class Controller_DocMK2 extends Controller_Common 
+class Controller_DocMK2 extends Controller_App
 {
 
 	public static function _init()
