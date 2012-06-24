@@ -1,33 +1,28 @@
 <?php
 class Controller_Clients extends Petro\Controller_App
 {
-	// protected $model = 'Model_Client';
 	// protected $app_name = 'Customer';
 	protected $view_display_columns = array('code', 'name', 'name_en', 'status');
 
-	public function a_action_index()
+	public function action_index()
 	{
-		// Grid::set_config('file', 'page_name');
-		// $grid = new Petro_Grid('Model_Client');
-		$grid = new Petro_Grid($this->model);
-
-		// $data['index_content'] = $grid->render();
+		// $grid = new Petro_Grid($this->model);
+		$grid = new Petro_Grid($this);
 		
 		$this->sidebars->add('Filters', 
 			Petro::render_filters(array(
 				'code' => array('label' => 'Code', 'type' => 'string'),
 				'name' => array('type' => 'string'),
-				'status' => array('type' => 'select', 'collection' => Petro_Lookup::get('client.status'))
-				// 'status' => array('type' => 'check_boxes', 'collection' => Petro_Lookup::get_array('client.status'))
+				// 'status' => array('type' => 'select', 'collection' => Petro_Lookup::get('client.status'))
+				'status' => array('type' => 'checkbox', 'collection' => Petro_Lookup::get('client.status'))
 			))
-		); 
+		);
 		
 		$this->action_items = array(
-			array('title' => 'Add New Client', 'link' => Petro::get_routes('new')),
+			array('title' => 'Add New Client', 'link' => Petro::get_routes('new'), 'visible' => $this->can_create()),
 		);
 
 		// $this->template->page_title = "Clients";
-		// $this->template->content = View::forge('clients/index', array('index_content' => $grid->render()), false);
 		$this->template->set('content', $grid->render(), false);
 	}
 	
@@ -46,7 +41,11 @@ class Controller_Clients extends Petro\Controller_App
 	public function action_view($id = null)
 	{
 		$client = Model_Client::find($id);
-
+		if (is_null($client))
+		{
+			\Response::redirect('clients');
+		}
+		
 		$data['client'] = Petro::render_panel(
 			'Client Information',
 			// Petro::render_attr_table($client, static::_columns('view'))
@@ -94,7 +93,6 @@ class Controller_Clients extends Petro\Controller_App
 		);
 		
 		$this->template->page_title = $client->name;
-		// $this->template->content = View::forge('clients/view2', $data, false);
 		$this->template->set('content', $data['client'].$data['comments'], false);
 	}
 	
@@ -199,7 +197,6 @@ class Controller_Clients extends Petro\Controller_App
 		}
 		
 		$this->template->page_title = "Edit Client";
-		// $this->template->content = View::forge('clients/edit');
 		$this->template->set('content', $form->build($client), false);
 	}
 	
@@ -207,7 +204,6 @@ class Controller_Clients extends Petro\Controller_App
 	{
 		$model = $this->model;
 		
-		// if ( ! is_null($id) and $client = Model_Client::find($id)->delete())
 		if ( ! is_null($id) and $client = $model::find($id)->delete())
 		{
 			Session::set_flash('success', 'Deleted client #' . $id);

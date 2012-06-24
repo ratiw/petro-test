@@ -15,12 +15,18 @@ class Model_Client extends Orm\Model
 		'code' => array(
 			'data_type' => 'string',
 			'validation' => array('required', 'max_length' => array(10), 'min_length' => array(2)),
-			'grid' => array('sortable' => true),
+			'grid' => array(
+				'sortable' => true,
+				'process' => 'process_code',
+			),
 		),
 		'name' => array(
 			'data_type' => 'string',
 			'validation' => array('required', 'max_length' => array(100)),
-			'grid' => array('sortable' => true),
+			'grid' => array(
+				'sortable' => true,
+				'process' => 'process_code',
+			),
 		),
 		'name_en' => array(
 			'data_type' => 'string',
@@ -53,6 +59,12 @@ class Model_Client extends Orm\Model
 			'events' => array('before_save'),
 		),
 	);
+	
+	public static function process_code($data, $value)
+	{
+		$link = 'clients/'.$data->id;
+		return (\Uri::string() == $link) ? $value : \Html::anchor($link, $value);
+	}
 }
 
 /* End of file client.php */
