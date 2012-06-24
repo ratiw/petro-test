@@ -8,9 +8,7 @@ class Create_comments {
 	{
 		\DBUtil::create_table('comments', array(
 			'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true),
-			// ref_type must be defined somewhere in the app (config?) to help determine
-			// which comment record belongs to which app module/function.
-			'ref_type' => array('constraint' => 4, 'type' => 'int'),
+			'app' => array('constraint' => 20, 'type' => 'varchar'),
 			'ref_id' => array('constraint' => 11, 'type' => 'int'),
 			'user_id' => array('constraint' => 11, 'type' => 'int'),
 			'type' => array('type' => 'tinyint'),

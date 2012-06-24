@@ -32,7 +32,6 @@ class Controller_Clients extends Petro\Controller_App
 			Petro::render_filters(array(
 				'code' => array('label' => 'Code', 'type' => 'string'),
 				'name' => array('type' => 'string'),
-				// 'status' => array('type' => 'select', 'collection' => Petro_Lookup::get('client.status'))
 				'status' => array('type' => 'checkbox', 'collection' => Petro_Lookup::get('client.status'))
 			))
 		); 
@@ -73,7 +72,7 @@ class Controller_Clients extends Petro\Controller_App
 			// )
 		);
 		
-		$data['comments'] = Petro_Comment::render($this->ref_type, $id);
+		$data['comments'] = Petro_Comment::render($this->app, $id);
 
 		$this->sidebars->add(
 			'Render from another View!', 
@@ -103,7 +102,7 @@ class Controller_Clients extends Petro\Controller_App
 			View::forge('sidebar_link', array('url' => 'going/anywhere'))
 		);
 		
-		return Petro_Comment::render($this->ref_type, $data->id);
+		return Petro_Comment::render($this->app, $data->id);
 	}
 	
 	protected function setup_form()

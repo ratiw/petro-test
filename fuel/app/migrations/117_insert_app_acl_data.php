@@ -10,26 +10,27 @@ class Insert_App_Acl_data {
 	{
 		\DB::set_charset('utf8');
 
-		$result = \DB::query('SELECT app_id FROM apps ORDER BY app_id')->execute();
+		$result = \DB::query('SELECT name FROM apps ORDER BY seq')->execute();
 		$admin_level = 100;
 
 		foreach($result as $r)
 		{
-			$this->insert($r['app_id'], $admin_level, 'Y', 'Y', 'Y', 'Y', 'Y');
+			$this->insert($r['name'], $admin_level, 'Y', 'Y', 'Y', 'Y', 'Y');
 		}
 		
+		$this->insert('clients', 50, 'N', 'Y', 'N', 'N', 'Y');
 	}
 
-	private function insert($app_id, $level, $create, $read, $update, $delete, $print)
+	private function insert($app, $level, $create, $read, $update, $delete, $print)
 	{
 		\DB::insert($this->table_name)->set(array(
-			'app_id'	=> $app_id,
-			'level'	=> $level,
-			'create'	=> $create,
-			'read'	=> $read,
+			'app'	 => $app,
+			'level'	 => $level,
+			'create' => $create,
+			'read'	 => $read,
 			'update' => $update,
 			'delete' => $delete,
-			'print' => $print,
+			'print'  => $print,
 		))->execute();
 	}
 	

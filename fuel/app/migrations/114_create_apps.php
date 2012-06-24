@@ -13,10 +13,11 @@ class Create_apps
 			'name' => array('constraint' => 20, 'type' => 'varchar'),
 			'title' => array('constraint' => 50, 'type' => 'varchar'),
 			'title_en' => array('constraint' => 50, 'type' => 'varchar'),
-			'app_id' => array('constraint' => 11, 'type' => 'int'),
+			'seq' => array('constraint' => 11, 'type' => 'int'),
 			'link' => array('constraint' => 255, 'type' => 'varchar', 'null' => true),
 			'has_sub' => array('constraint' => 1, 'type' => 'char', 'default' => 'N'),
 			'parent' => array('constraint' => 11, 'type' => 'int', 'null' => true),
+			'level' => array('constraint' => 11, 'type' => 'int', 'null' => true),
 
 		), array('id'), true, 'InnoDB', 'utf8_general_ci');
 
@@ -24,7 +25,6 @@ class Create_apps
 		$active_db = \Config::get('db.active');
 		$table_prefix = \Config::get('db.'.$active_db.'.table_prefix');
 		\DB::query("CREATE UNIQUE INDEX apps_name ON ".$table_prefix.$this->table_name." (name)")->execute();
-		\DB::query("CREATE UNIQUE INDEX apps_app_id ON ".$table_prefix.$this->table_name." (app_id)")->execute();
 
 	}
 

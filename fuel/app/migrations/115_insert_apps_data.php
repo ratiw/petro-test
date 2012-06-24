@@ -25,10 +25,10 @@ class Insert_Apps_data {
 		
 	}
 
-	private function insert($app_id, $name, $title, $title_en, $link = null, $has_sub = 'N', $parent = null)
+	private function insert($seq, $name, $title, $title_en, $link = null, $has_sub = 'N', $parent = null, $level = null)
 	{
 		\DB::insert($this->table_name)->set(array(
-			'app_id'	=> $app_id,
+			'seq'	=> $seq,
 			'name'	=> $name,
 			'title'	=> $title,
 			'title_en'	=> $title_en,

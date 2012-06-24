@@ -25,6 +25,7 @@ return array(
 				16 => '117_insert_app_acl_data',
 				17 => '118_insert_groups_data',
 				18 => '119_create_employees',
+				19 => '120_insert_lookups_data_2',
 			),
 		),
 		'module' => 

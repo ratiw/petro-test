@@ -18,7 +18,6 @@ class Controller_DocMK011 extends Controller_App
         parent::_init();
         // Config::set('language', 'th');
         // Lang::load('Docmk011');
-        // static::$ref_type = 400;    // ref_type for Docmk011    
 	}
 
     /**

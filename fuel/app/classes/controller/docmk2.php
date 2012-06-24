@@ -262,7 +262,7 @@ class Controller_DocMK2 extends Controller_App
 			array('title' => 'Delete Docmk', 'link' => $routes['delete']),
 		);
 
-		$data['comments'] = Petro_Comment::render($this->ref_type, $id, 'History');
+		$data['comments'] = Petro_Comment::render($this->app, $id, 'History');
 		
 		$this->template->page_title = "MK Info";
 		$this->template->content = View::forge('docmk2/view', $data, false);
