@@ -24,6 +24,7 @@ class Controller_Clients extends Petro\Controller_App
 
 		// $this->template->page_title = "Clients";
 		$this->template->set('content', $grid->render(), false);
+		// Petro_Menu::load_from_table();
 	}
 	
 	public function setup_index(&$grid)

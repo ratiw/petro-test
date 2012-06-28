@@ -10,7 +10,7 @@ class Insert_App_Acl_data {
 	{
 		\DB::set_charset('utf8');
 
-		$result = \DB::query('SELECT name FROM apps ORDER BY seq')->execute();
+		$result = \DB::query('SELECT name FROM menu ORDER BY seq')->execute();
 		$admin_level = 100;
 
 		foreach($result as $r)
